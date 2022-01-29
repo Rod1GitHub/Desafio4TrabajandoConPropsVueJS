@@ -1,0 +1,44 @@
+Html
+=====
+v-model="task"
+<button @click="addTask">Agregar</button>
+<ToDoList v-bind:tasks="tasks" />
+
+Script
+======
+import ToDoList from "@/components/ToDoList.vue";
+
+components: {
+    ToDoList,
+  }
+
+data() {
+return {
+    task: "",
+    tasks: [],
+};
+}
+
+
+methods: {
+addTask() {
+    const { task } = this;
+    this.tasks.push(task);
+}
+}
+
+Components file
+===============
+Html
+==
+<ul>
+<li v-for="(task, i) in tasks" :key="i">
+    {{ task }}
+</li>
+</ul>
+
+Script
+==
+props: {
+    tasks: [],
+  }
